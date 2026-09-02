@@ -143,7 +143,7 @@ export function TripForm({ value, onChange, onSubmit, loading }: Props) {
                   min={0}
                   max={10}
                   step={1}
-                  onValueChange={([v]) => setPref(c, v)}
+                  onValueChange={([v]) => setPref(c, v ?? 0)}
                 />
               </div>
             ))}
@@ -162,7 +162,7 @@ export function TripForm({ value, onChange, onSubmit, loading }: Props) {
             min={30}
             max={300}
             step={15}
-            onValueChange={([v]) => set("maxDailyTravelMinutes", v)}
+            onValueChange={([v]) => set("maxDailyTravelMinutes", v ?? 120)}
           />
         </div>
         <div>
@@ -177,7 +177,7 @@ export function TripForm({ value, onChange, onSubmit, loading }: Props) {
             min={0}
             max={10}
             step={1}
-            onValueChange={([v]) => set("sustainability", v)}
+            onValueChange={([v]) => set("sustainability", v ?? 5)}
           />
         </div>
       </div>

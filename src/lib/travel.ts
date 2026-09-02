@@ -171,7 +171,7 @@ const STYLE_COST: Record<TripInput["style"], number> = {
 
 export function optimizeTrip(input: TripInput, salt = 0): TripPlan {
   const dest = input.destination.trim() || "Your City";
-  const short = dest.split(",")[0].trim();
+  const short = (dest.split(",")[0] ?? dest).trim();
   const rand = rng(hash(dest.toLowerCase()) + salt * 7919);
 
   const pool: Attraction[] = [];
@@ -265,7 +265,7 @@ export function optimizeTrip(input: TripInput, salt = 0): TripPlan {
       if (travelMinutes + mins > input.maxDailyTravelMinutes) break;
       travelMinutes += mins;
       totalDistance += km;
-      cursor = remaining.splice(bestIdx, 1)[0];
+      cursor = remaining.splice(bestIdx, 1)[0]!;
       items.push(cursor);
     }
     const date = new Date(start.getTime() + d * 86400000);
@@ -314,7 +314,7 @@ export function optimizeTrip(input: TripInput, salt = 0): TripPlan {
     ),
   );
 
-  const areas = ["Old Town", "Harbour District", "Green Quarter", "Riverside"];
+  const areas: [string, string, string, string] = ["Old Town", "Harbour District", "Green Quarter", "Riverside"];
   const hotels: Hotel[] = [
     {
       name: `The ${short} Cortile`,
